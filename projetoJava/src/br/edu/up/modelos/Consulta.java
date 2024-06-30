@@ -11,3 +11,32 @@ public class Consulta extends Paciente {
         this.data = data;
         this.sala = sala;
     }
+   public String getMedicoCrm() {
+      return medicoCrm;
+  }
+
+  public void setMedicoCrm(String medicoCrm) {
+      this.medicoCrm = medicoCrm;
+  }
+
+  public String getData() {
+      return data;
+  }
+
+  public void setData(String data) {
+      this.data = data;
+  }
+
+  public String getSala() {
+      return sala;
+  }
+
+  public void setSala(String sala) {
+      this.sala = sala;
+  }
+
+  @Override
+  public String toString() {
+      return getNome() + "," + getCpf() + "," + medicoCrm + "," + data + "," + sala;
+  }
+}
