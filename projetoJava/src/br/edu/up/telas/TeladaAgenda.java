@@ -62,24 +62,30 @@ public class   TeladaAgenda {
     }
 
     private void adicionarPaciente() {
+        System.out.print("Codigo do Paciente: ");
+        String codigo = scanner.nextLine();
         System.out.print("Nome do Paciente: ");
         String nome = scanner.nextLine();
         System.out.print("CPF do Paciente: ");
         String cpf = scanner.nextLine();
-        controle.adicionarPaciente(nome, cpf);
+        controle.adicionarPaciente(codigo,nome, cpf);
     }
 
     private void adicionarMedico() {
+        System.out.print("Código do médico: ");
+        String codigo = scanner.nextLine();
         System.out.print("Nome do Medico: ");
         String nome = scanner.nextLine();
         System.out.print("CRM do Medico: ");
         String crm = scanner.nextLine();
         System.out.print("Especialidade do Medico: ");
         String especialidade = scanner.nextLine();
-        controle.adicionarMedico(nome, crm, especialidade);
+        controle.adicionarMedico(codigo, nome, crm, especialidade);
     }
 
     private void adicionarConsulta() {
+        System.out.print("Código do Paciente: ");
+        String codigo = scanner.nextLine();
         System.out.print("Nome do Paciente: ");
         String nome = scanner.nextLine();
         System.out.print("CPF do Paciente: ");
@@ -88,17 +94,21 @@ public class   TeladaAgenda {
         String medicoCrm = scanner.nextLine();
         System.out.print("Data da Consulta (dd/MM/yyyy): ");
         String data = scanner.nextLine();
+        System.out.print("Hora da Consulta (hh:mm): ");
+        String hora = scanner.nextLine();
         System.out.print("Sala da Consulta: ");
         String sala = scanner.nextLine();
-        controle.adicionarConsulta(nome, cpf, medicoCrm, data, sala);
+        controle.adicionarConsulta(codigo, nome, cpf, medicoCrm, data, sala);
     }
 
     private void adicionarSala() {
+        System.out.print("Codigo da Sala: ");
+        String codigo = scanner.nextLine();
         System.out.print("Numero da Sala: ");
         String numero = scanner.nextLine();
         System.out.print("Descricao da Sala: ");
         String descricao = scanner.nextLine();
-        controle.adicionarSala(numero, descricao);
+        controle.adicionarSala(codigo,numero, descricao);
     }
 
     private void listarPacientes() {
