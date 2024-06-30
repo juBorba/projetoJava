@@ -1,5 +1,10 @@
+
+
+import br.edu.up.telas.TeladaAgenda;
+
 public class Programa {
-    public static void main(String[] args) throws Exception {
-        System.out.println("Hello, World!");
+    public static void main(String[] args) {
+        TeladaAgenda view = new TeladaAgenda();
+        view.menu();
     }
 }

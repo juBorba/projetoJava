@@ -8,7 +8,7 @@ import java.util.List;
 public class PacienteDaos {
     private final String filePath = "data/pacientes.csv";
 
-    public void save(Paciente paciente) {
+    public void salvar(Paciente paciente) {
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(filePath, true))) {
             writer.write(paciente.toString());
             writer.newLine();
@@ -17,13 +17,13 @@ public class PacienteDaos {
         }
     }
 
-    public List<Paciente> findAll() {
+    public List<Paciente> buscarTodos() {
         List<Paciente> pacientes = new ArrayList<>();
         try (BufferedReader reader = new BufferedReader(new FileReader(filePath))) {
             String line;
             while ((line = reader.readLine()) != null) {
                 String[] fields = line.split(",");
-                Paciente paciente = new Paciente(fields[0], fields[1]);
+                Paciente paciente = new Paciente(fields[0], fields[1], fields [2]);
                 pacientes.add(paciente);
             }
         } catch (IOException e) {
@@ -31,4 +31,22 @@ public class PacienteDaos {
         }
         return pacientes;
     }
+    //valida paciente cadastrado
+
+    public Paciente buscarCpf(String cpf) {
+        try (BufferedReader reader = new BufferedReader(new FileReader(filePath))) {
+            String line;
+            while ((line = reader.readLine()) != null) {
+                String[] fields = line.split(",");
+                if (fields.length >= 2 && fields[2].equals(cpf)) { 
+                    return new Paciente(fields[0], fields[1], fields[2]);
+                }
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return null; // paciente nao encontrado
+    }
+
+
 }
