@@ -8,7 +8,7 @@ import java.util.List;
 public class ConsultaDaos {
     private final String filePath = "data/consultas.csv";
 
-    public void save(Consulta consulta) {
+    public void salvar(Consulta consulta) {
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(filePath, true))) {
             writer.write(consulta.toString());
             writer.newLine();
@@ -17,13 +17,13 @@ public class ConsultaDaos {
         }
     }
 
-    public List<Consulta> findAll() {
+    public List<Consulta>  buscarTodas() {
         List<Consulta> consultas = new ArrayList<>();
         try (BufferedReader reader = new BufferedReader(new FileReader(filePath))) {
             String line;
             while ((line = reader.readLine()) != null) {
                 String[] fields = line.split(",");
-                Consulta consulta = new Consulta(fields[0], fields[1], fields[2], fields[3], fields[4]);
+                Consulta consulta = new Consulta(fields[0], fields[1], fields[2], fields[3], fields[4]), fields[5];
                 consultas.add(consulta);
             }
         } catch (IOException e) {

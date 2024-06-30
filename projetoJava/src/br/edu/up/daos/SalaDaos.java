@@ -8,7 +8,7 @@ import java.util.List;
 public class SalaDaos {
     private final String filePath = "data/salas.csv";
 
-    public void save(Sala sala) {
+    public void salvar(Sala sala) {
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(filePath, true))) {
             writer.write(sala.toString());
             writer.newLine();
@@ -17,13 +17,13 @@ public class SalaDaos {
         }
     }
 
-    public List<Sala> findAll() {
+    public List<Sala> buscarTodos() {
         List<Sala> salas = new ArrayList<>();
         try (BufferedReader reader = new BufferedReader(new FileReader(filePath))) {
             String line;
             while ((line = reader.readLine()) != null) {
                 String[] fields = line.split(",");
-                Sala sala = new Sala(fields[0], fields[1]);
+                Sala sala = new Sala(fields[0], fields[1], fields[2]);
                 salas.add(sala);
             }
         } catch (IOException e) {
@@ -31,4 +31,19 @@ public class SalaDaos {
         }
         return salas;
     }
+    public Sala buscarNumero(String numero) {
+        try (BufferedReader reader = new BufferedReader(new FileReader(filePath))) {
+            String line;
+            while ((line = reader.readLine()) != null) {
+                String[] fields = line.split(",");
+                if (fields.length >= 3 && fields[1].equals(numero)) {
+                    return new Sala(fields[0], fields[1], fields[2]);
+                }
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return null; 
+    }
+    
 }

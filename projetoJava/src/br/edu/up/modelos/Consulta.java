@@ -5,13 +5,13 @@ public class Consulta extends Paciente {
     private String data;
     private String sala;
 
-    public Consulta(String nome, String cpf, String medicoCrm, String data, String sala) {
-        super(nome, cpf);
+    public Consulta(String codigo, String nome, String cpf, String medicoCrm, String data, String sala) {
+        super(codigo, nome, cpf);
         this.medicoCrm = medicoCrm;
         this.data = data;
         this.sala = sala;
     }
-   public String getMedicoCrm() {
+    public String getMedicoCrm() {
       return medicoCrm;
   }
 
@@ -37,6 +37,9 @@ public class Consulta extends Paciente {
 
   @Override
   public String toString() {
-      return getNome() + "," + getCpf() + "," + medicoCrm + "," + data + "," + sala;
-  }
-}
+      return "Consulta{" + "codigo='" + getCodigo() + '\'' + ", nome='" + getNome() + '\'' + ", cpf='" + getCpf() + '\'' + ", Crm='" + medicoCrm + '\'' +", data='" + data + '\'' + ", sala='" + sala + '\'' + '}';
+
+    }
+    
+    }
+    

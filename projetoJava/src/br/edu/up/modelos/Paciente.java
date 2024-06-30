@@ -1,13 +1,23 @@
 package br.edu.up.modelos;
 
 public class Paciente {
+    private String codigo;
     private String nome;
     private String cpf;
 
-    public Paciente(String nome, String cpf) {
+    public Paciente(String codigo,String nome, String cpf) {
+        this.codigo = codigo;
         this.nome = nome;
         this.cpf = cpf;
     }
+    public String getCodigo() {
+        return codigo;
+    }
+  
+    public void setCodigo(String codigo) {
+        this.codigo = codigo;
+    }
+
 
     public String getNome() {
       return nome;
@@ -27,6 +37,6 @@ public class Paciente {
 
   @Override
   public String toString() {
-      return nome + "," + cpf;
+    return "Paciente{" + "codigo='" + codigo + '\'' + ", nome='" + nome + '\'' + ", cpf='" + cpf + '\'' + '}';
   }
 }
