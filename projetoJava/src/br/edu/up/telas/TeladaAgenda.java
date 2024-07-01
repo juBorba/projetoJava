@@ -22,7 +22,8 @@ public class   TeladaAgenda {
             System.out.println("6. Listar Medicos");
             System.out.println("7. Listar Consultas");
             System.out.println("8. Listar Salas");
-            System.out.println("9. Sair");
+            System.out.println("9. Excluir Consulta");
+            System.out.println("10. Sair");
             System.out.print("Escolha uma opcao: ");
             opcao = scanner.nextInt();
             scanner.nextLine();  // consume newline
@@ -52,7 +53,10 @@ public class   TeladaAgenda {
                 case 8:
                     listarSalas();
                     break;
-                case 9:
+                    case 9:
+                    excluirConsulta();
+                    break;
+                case 10:
                     System.out.println("Saindo...");
                     break;
                 default:
@@ -136,4 +140,15 @@ public class   TeladaAgenda {
             System.out.println(sala);
         }
     }
+    private void excluirConsulta() {
+        System.out.print("CPF do Paciente da Consulta que deseja excluir: ");
+        String cpf = scanner.nextLine();
+        System.out.print("Data da Consulta (dd/MM/yyyy): ");
+        String data = scanner.nextLine();
+        System.out.print("Hora da Consulta (hh:mm): ");
+        String hora = scanner.nextLine();
+        controle.excluirConsulta(cpf, data, hora);
+    }
+    
+    
 }

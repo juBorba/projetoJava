@@ -43,12 +43,19 @@ public class ControledeAgenda {
             return;
         }
 
-        // Verificando se já existe uma consulta com o paciente nesse horário
         Consulta consultaExistente = consultaDaos.buscarPorPacienteEHorario(cpf.trim(), data.trim(), hora.trim());
         if (consultaExistente != null) {
-            System.out.println("Já existe uma consulta agendada para este paciente nesse horário.");
+            System.out.println("Já existe uma consulta agendada para este paciente neste horário.");
             return;
         }
+    
+        // Verificar se já existe uma consulta com o mesmo médico nesse horário
+        Consulta consultaExistenteMedico = consultaDaos.buscarPorMedicoEHorario(medicoCrm.trim(), data.trim(), hora.trim());
+        if (consultaExistenteMedico != null) {
+            System.out.println("O médico já possui uma consulta agendada neste horário.");
+            return;
+        }
+    
 
         // Agendando a consulta
         Consulta consulta = new Consulta(codigo, paciente.getNome(), paciente.getCpf(), medico.getCrm(), data, hora, sala.getNumero());
@@ -76,4 +83,14 @@ public class ControledeAgenda {
     public List<Sala> listarSalas() {
         return salaDaos.buscarTodos();
     }
+
+    public void excluirConsulta(String cpf, String data, String hora) {
+        boolean consultaExcluida = consultaDaos.excluirConsulta(cpf, data, hora);
+        if (consultaExcluida) {
+            System.out.println("Consulta excluída com sucesso!");
+        } else {
+            System.out.println("Consulta não encontrada ou não pôde ser excluída.");
+        }
+    }
+    
 }

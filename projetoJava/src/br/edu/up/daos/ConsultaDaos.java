@@ -53,4 +53,40 @@ public class ConsultaDaos {
         }
         return null; // consulta não encontrada
     }
+    public Consulta buscarPorMedicoEHorario(String medicoCrm, String data, String hora) {
+        try (BufferedReader reader = new BufferedReader(new FileReader(filePath))) {
+            String line;
+            while ((line = reader.readLine()) != null) {
+                String[] fields = line.split(",");
+                if (fields.length >= 7 && fields[3].trim().equals(medicoCrm.trim()) && fields[4].trim().equals(data.trim()) && fields[5].trim().equals(hora.trim())) {
+                    return new Consulta(fields[0], fields[1], fields[2], fields[3], fields[4], fields[5], fields[6]);
+                }
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return null; // consulta não encontrada
+    }
+    public boolean excluirConsulta(String cpf, String data, String hora) {
+        List<Consulta> consultas = buscarTodas();
+        boolean consultaExcluida = false;
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter(filePath))) {
+            for (Consulta consulta : consultas) {
+                if (!consulta.getCpf().equals(cpf.trim()) || !consulta.getData().equals(data.trim()) || !consulta.getHora().equals(hora.trim())) {
+                    writer.write(consulta.toString());
+                    writer.newLine();
+                } else {
+                    consultaExcluida = true;
+                }
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return consultaExcluida;
+    }
+    
+
+
+
+
 }
