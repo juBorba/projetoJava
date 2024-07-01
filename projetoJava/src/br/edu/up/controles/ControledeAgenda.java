@@ -11,8 +11,8 @@ public class ControledeAgenda {
     private ConsultaDaos consultaDaos = new ConsultaDaos();
     private SalaDaos salaDaos = new SalaDaos();
 
-    public void adicionarPaciente(String codigo,String nome, String cpf) {
-        Paciente paciente = new Paciente(codigo,nome, cpf);
+    public void adicionarPaciente(String codigo, String nome, String cpf) {
+        Paciente paciente = new Paciente(codigo, nome, cpf);
         pacienteDaos.salvar(paciente);
     }
 
@@ -21,40 +21,42 @@ public class ControledeAgenda {
         medicoDaos.salvar(medico);
     }
 
-    public void adicionarConsulta(String nome, String cpf, String medicoCrm, String data, String hora, String salaNumero) {
-        // Verificando se o paciente, médico e sala já existem
-        Paciente paciente = pacienteDaos.buscarCpf(cpf);
+    public void adicionarConsulta(String codigoPaciente, String cpf, String medicoCrm, String data, String hora, String salaNumero) {
+        System.out.println("Buscando paciente com CPF: " + cpf);
+        Paciente paciente = pacienteDaos.buscarCpf(cpf.trim());
         if (paciente == null) {
             System.out.println("Paciente não cadastrado.");
             return;
+        } else {
+            System.out.println("Paciente encontrado: " + paciente.getNome());
         }
-    
-        Medico medico = medicoDaos.buscarCrm(medicoCrm);
+
+        Medico medico = medicoDaos.buscarCrm(medicoCrm.trim());
         if (medico == null) {
             System.out.println("Médico não cadastrado.");
             return;
         }
-    
-        Sala sala = salaDaos.buscarNumero(salaNumero);
+
+        Sala sala = salaDaos.buscarNumero(salaNumero.trim());
         if (sala == null) {
             System.out.println("Sala não cadastrada.");
             return;
         }
-    
-        // Verificar se já existe uma consulta marcada para o paciente na data e hora especificadas
-        List<Consulta> consultasDoPaciente = consultaDaos.buscarPorPacienteEHorario(paciente.getCodigo(), data, hora);
-        if (!consultasDoPaciente.isEmpty()) {
-            System.out.println("Já existe uma consulta marcada para o paciente neste horário.");
+
+        // Verificando se já existe uma consulta com o paciente nesse horário
+        Consulta consultaExistente = consultaDaos.buscarPorPacienteEHorario(cpf.trim(), data.trim(), hora.trim());
+        if (consultaExistente != null) {
+            System.out.println("Já existe uma consulta agendada para este paciente nesse horário.");
             return;
         }
-    
-        // Criar e salvar a consulta
-        Consulta consulta = new Consulta(paciente.getCodigo(), paciente.getNome(), paciente.getCpf(), medico.getCrm(), data, hora, sala.getNumero());
-        consultaDaos.salvar(consulta);
-    }
-    
 
-    public void adicionarSala(String codigo,String numero, String descricao) {
+        // Agendando a consulta
+        Consulta consulta = new Consulta(codigoPaciente, paciente.getNome(), paciente.getCpf(), medico.getCrm(), data, hora, sala.getNumero());
+        consultaDaos.salvar(consulta);
+        System.out.println("Consulta agendada com sucesso!");
+    }
+
+    public void adicionarSala(String codigo, String numero, String descricao) {
         Sala sala = new Sala(codigo, numero, descricao);
         salaDaos.salvar(sala);
     }

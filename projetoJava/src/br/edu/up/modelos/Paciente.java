@@ -37,6 +37,6 @@ public class Paciente {
 
   @Override
   public String toString() {
-    return "Paciente{" + "codigo='" + codigo + '\'' + ", nome='" + nome + '\'' + ", cpf='" + cpf + '\'' + '}';
-  }
+    return codigo + "," + nome + "," + cpf;
+}
 }

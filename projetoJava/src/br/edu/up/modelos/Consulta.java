@@ -47,8 +47,8 @@ public void setHora(String hora) {
 
   @Override
   public String toString() {
-      return "Consulta{" + "codigo='" + getCodigo() + '\'' + ", nome='" + getNome() + '\'' + ", cpf='" + getCpf() + '\'' + ", Crm='" + medicoCrm + '\'' +", data='" + data + '\'' + ", hora='" + hora + '\'' + ", sala='" + sala + '\'' + '}';
 
+    return getNome() + "," + getCpf() + "," + medicoCrm + "," + data + "," + hora + "," + sala;
     }
     
     }

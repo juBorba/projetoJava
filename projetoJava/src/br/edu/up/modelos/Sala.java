@@ -38,6 +38,6 @@ public class Sala {
 
   @Override
   public String toString() {
-    return "Sala{" + "codigo='" + codigo + '\'' + ", numero='" + numero + '\'' + ", descrição='" + descricao + '\'' + '}';
-  }
+    return codigo + "," + numero + "," + descricao;
+}
 }

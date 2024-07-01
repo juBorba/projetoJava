@@ -23,30 +23,31 @@ public class PacienteDaos {
             String line;
             while ((line = reader.readLine()) != null) {
                 String[] fields = line.split(",");
-                Paciente paciente = new Paciente(fields[0], fields[1], fields [2]);
-                pacientes.add(paciente);
+                if (fields.length >= 3) {
+                    Paciente paciente = new Paciente(fields[0], fields[1], fields[2]);
+                    pacientes.add(paciente);
+                } else {
+                    System.out.println("Linha com formato inválido no arquivo: " + line);
+                }
             }
         } catch (IOException e) {
             e.printStackTrace();
         }
         return pacientes;
     }
-    //valida paciente cadastrado
 
     public Paciente buscarCpf(String cpf) {
         try (BufferedReader reader = new BufferedReader(new FileReader(filePath))) {
             String line;
             while ((line = reader.readLine()) != null) {
                 String[] fields = line.split(",");
-                if (fields.length >= 2 && fields[2].equals(cpf)) { 
+                if (fields.length >= 3 && fields[2].trim().equals(cpf.trim())) {
                     return new Paciente(fields[0], fields[1], fields[2]);
                 }
             }
         } catch (IOException e) {
             e.printStackTrace();
         }
-        return null; // paciente nao encontrado
+        return null;
     }
-
-
 }
