@@ -47,9 +47,9 @@ public void setHora(String hora) {
 
   @Override
   public String toString() {
-
-    return getNome() + "," + getCpf() + "," + medicoCrm + "," + data + "," + hora + "," + sala;
+    return getCodigo() + "," + getNome() + "," + getCpf() + "," + medicoCrm + "," + data + "," + hora + "," + sala;
+}
     }
     
-    }
+    
     

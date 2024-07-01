@@ -21,7 +21,7 @@ public class ControledeAgenda {
         medicoDaos.salvar(medico);
     }
 
-    public void adicionarConsulta(String codigoPaciente, String cpf, String medicoCrm, String data, String hora, String salaNumero) {
+    public void adicionarConsulta(String codigo, String cpf, String medicoCrm, String data, String hora, String salaNumero) {
         System.out.println("Buscando paciente com CPF: " + cpf);
         Paciente paciente = pacienteDaos.buscarCpf(cpf.trim());
         if (paciente == null) {
@@ -51,7 +51,7 @@ public class ControledeAgenda {
         }
 
         // Agendando a consulta
-        Consulta consulta = new Consulta(codigoPaciente, paciente.getNome(), paciente.getCpf(), medico.getCrm(), data, hora, sala.getNumero());
+        Consulta consulta = new Consulta(codigo, paciente.getNome(), paciente.getCpf(), medico.getCrm(), data, hora, sala.getNumero());
         consultaDaos.salvar(consulta);
         System.out.println("Consulta agendada com sucesso!");
     }

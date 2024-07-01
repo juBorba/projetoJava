@@ -37,13 +37,12 @@ public class MedicoDaos {
         }
         return medicos;
     }
-
     public Medico buscarCrm(String crm) {
         try (BufferedReader reader = new BufferedReader(new FileReader(filePath))) {
             String line;
             while ((line = reader.readLine()) != null) {
                 String[] fields = line.split(",");
-                if (fields.length >= 4 && fields[1].trim().equals(crm.trim())) { 
+                if (fields.length >= 4 && fields[2].trim().equals(crm.trim())) { 
                     return new Medico(fields[0], fields[1], fields[2], fields[3]);
                 }
             }
@@ -52,4 +51,6 @@ public class MedicoDaos {
         }
         return null; // médico não encontrado
     }
+    
+ 
 }

@@ -35,19 +35,21 @@ public class PacienteDaos {
         }
         return pacientes;
     }
-
     public Paciente buscarCpf(String cpf) {
         try (BufferedReader reader = new BufferedReader(new FileReader(filePath))) {
             String line;
             while ((line = reader.readLine()) != null) {
                 String[] fields = line.split(",");
-                if (fields.length >= 3 && fields[2].trim().equals(cpf.trim())) {
+                if (fields.length >= 3 && fields[2].trim().equals(cpf.trim())) { 
                     return new Paciente(fields[0], fields[1], fields[2]);
                 }
             }
         } catch (IOException e) {
             e.printStackTrace();
         }
-        return null;
+        return null; // paciente não encontrado
     }
-}
+    
+    }
+    
+

@@ -86,8 +86,6 @@ public class   TeladaAgenda {
     private void adicionarConsulta() {
         System.out.print("Código do Paciente: ");
         String codigo = scanner.nextLine();
-        System.out.print("Nome do Paciente: ");
-        String nome = scanner.nextLine();
         System.out.print("CPF do Paciente: ");
         String cpf = scanner.nextLine();
         System.out.print("CRM do Medico: ");
@@ -98,7 +96,7 @@ public class   TeladaAgenda {
         String hora = scanner.nextLine();
         System.out.print("Sala da Consulta: ");
         String sala = scanner.nextLine();
-        controle.adicionarConsulta(codigo, nome, cpf, medicoCrm, data, sala);
+        controle.adicionarConsulta(codigo, cpf, medicoCrm, data, hora, sala);
     }
 
     private void adicionarSala() {
