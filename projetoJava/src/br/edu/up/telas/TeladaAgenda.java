@@ -1,12 +1,15 @@
 package br.edu.up.telas;
 
-import br.edu.up.controles.ControledeAgenda;
-import br.edu.up.modelos.*;
-
-import java.util.Scanner;
 import java.util.List;
+import java.util.Scanner;
 
-public class   TeladaAgenda {
+import br.edu.up.controles.ControledeAgenda;
+import br.edu.up.modelos.Consulta;
+import br.edu.up.modelos.Medico;
+import br.edu.up.modelos.Paciente;
+import br.edu.up.modelos.Sala;
+
+public class TeladaAgenda {
     private ControledeAgenda controle = new ControledeAgenda();
     private Scanner scanner = new Scanner(System.in);
 
@@ -26,7 +29,7 @@ public class   TeladaAgenda {
             System.out.println("10. Sair");
             System.out.print("Escolha uma opcao: ");
             opcao = scanner.nextInt();
-            scanner.nextLine(); 
+            scanner.nextLine();
 
             switch (opcao) {
                 case 1:
@@ -53,7 +56,7 @@ public class   TeladaAgenda {
                 case 8:
                     listarSalas();
                     break;
-                    case 9:
+                case 9:
                     excluirConsulta();
                     break;
                 case 10:
@@ -72,7 +75,7 @@ public class   TeladaAgenda {
         String nome = scanner.nextLine();
         System.out.print("CPF do Paciente: ");
         String cpf = scanner.nextLine();
-        controle.adicionarPaciente(codigo,nome, cpf);
+        controle.adicionarPaciente(codigo, nome, cpf);
     }
 
     private void adicionarMedico() {
@@ -110,7 +113,7 @@ public class   TeladaAgenda {
         String numero = scanner.nextLine();
         System.out.print("Descricao da Sala: ");
         String descricao = scanner.nextLine();
-        controle.adicionarSala(codigo,numero, descricao);
+        controle.adicionarSala(codigo, numero, descricao);
     }
 
     private void listarPacientes() {
@@ -140,6 +143,7 @@ public class   TeladaAgenda {
             System.out.println(sala);
         }
     }
+
     private void excluirConsulta() {
         System.out.print("CPF do Paciente da Consulta que deseja excluir: ");
         String cpf = scanner.nextLine();
@@ -148,7 +152,8 @@ public class   TeladaAgenda {
         System.out.print("Hora da Consulta (hh:mm): ");
         String hora = scanner.nextLine();
         controle.excluirConsulta(cpf, data, hora);
+        menu();
+
     }
-    
-    
+
 }
