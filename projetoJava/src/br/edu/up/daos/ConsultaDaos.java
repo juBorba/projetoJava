@@ -66,6 +66,7 @@ public class ConsultaDaos {
             e.printStackTrace();
         }
         return null; 
+    }
     public boolean excluirConsulta(String cpf, String data, String hora) {
         List<Consulta> consultas = buscarTodas();
         boolean consultaExcluida = false;
@@ -83,9 +84,5 @@ public class ConsultaDaos {
         }
         return consultaExcluida;
     }
-    
-
-
-
 
 }
