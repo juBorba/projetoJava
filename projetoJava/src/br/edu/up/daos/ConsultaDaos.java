@@ -51,7 +51,7 @@ public class ConsultaDaos {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        return null; // consulta não encontrada
+        return null; 
     }
     public Consulta buscarPorMedicoEHorario(String medicoCrm, String data, String hora) {
         try (BufferedReader reader = new BufferedReader(new FileReader(filePath))) {
@@ -65,8 +65,7 @@ public class ConsultaDaos {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        return null; // consulta não encontrada
-    }
+        return null; 
     public boolean excluirConsulta(String cpf, String data, String hora) {
         List<Consulta> consultas = buscarTodas();
         boolean consultaExcluida = false;

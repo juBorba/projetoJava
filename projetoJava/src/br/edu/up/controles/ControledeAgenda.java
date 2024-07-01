@@ -11,18 +11,20 @@ public class ControledeAgenda {
     private ConsultaDaos consultaDaos = new ConsultaDaos();
     private SalaDaos salaDaos = new SalaDaos();
 
+
+    //adicionar paciente
     public void adicionarPaciente(String codigo, String nome, String cpf) {
         Paciente paciente = new Paciente(codigo, nome, cpf);
         pacienteDaos.salvar(paciente);
     }
-
+    // adicionar medico
     public void adicionarMedico(String codigo, String nome, String crm, String especialidade) {
         Medico medico = new Medico(codigo, nome, crm, especialidade);
         medicoDaos.salvar(medico);
     }
-
+    // adicionar consulta e validações
     public void adicionarConsulta(String codigo, String cpf, String medicoCrm, String data, String hora, String salaNumero) {
-        System.out.println("Buscando paciente com CPF: " + cpf);
+        System.out.println("Buscando CPF: " + cpf);
         Paciente paciente = pacienteDaos.buscarCpf(cpf.trim());
         if (paciente == null) {
             System.out.println("Paciente não cadastrado.");
@@ -45,14 +47,14 @@ public class ControledeAgenda {
 
         Consulta consultaExistente = consultaDaos.buscarPorPacienteEHorario(cpf.trim(), data.trim(), hora.trim());
         if (consultaExistente != null) {
-            System.out.println("Já existe uma consulta agendada para este paciente neste horário.");
+            System.out.println("Já existe uma consulta agendada nesse horário.");
             return;
         }
     
-        // Verificar se já existe uma consulta com o mesmo médico nesse horário
+        // Verifica se já existe uma consulta com o mesmo médico nesse horário
         Consulta consultaExistenteMedico = consultaDaos.buscarPorMedicoEHorario(medicoCrm.trim(), data.trim(), hora.trim());
         if (consultaExistenteMedico != null) {
-            System.out.println("O médico já possui uma consulta agendada neste horário.");
+            System.out.println("O médico já possui paciente neste horário.");
             return;
         }
     
@@ -63,6 +65,7 @@ public class ControledeAgenda {
         System.out.println("Consulta agendada com sucesso!");
     }
 
+    //adicionar sala
     public void adicionarSala(String codigo, String numero, String descricao) {
         Sala sala = new Sala(codigo, numero, descricao);
         salaDaos.salvar(sala);
@@ -84,12 +87,13 @@ public class ControledeAgenda {
         return salaDaos.buscarTodos();
     }
 
+    //exclui consulta
     public void excluirConsulta(String cpf, String data, String hora) {
         boolean consultaExcluida = consultaDaos.excluirConsulta(cpf, data, hora);
         if (consultaExcluida) {
             System.out.println("Consulta excluída com sucesso!");
         } else {
-            System.out.println("Consulta não encontrada ou não pôde ser excluída.");
+            System.out.println("Consulta não encontrada.");
         }
     }
     

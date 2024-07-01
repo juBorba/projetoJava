@@ -26,7 +26,7 @@ public class   TeladaAgenda {
             System.out.println("10. Sair");
             System.out.print("Escolha uma opcao: ");
             opcao = scanner.nextInt();
-            scanner.nextLine();  // consume newline
+            scanner.nextLine(); 
 
             switch (opcao) {
                 case 1:
